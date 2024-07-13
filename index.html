@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/images/favicon-32x32.png"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      html {
+        font-size: 62.5%;
+      }
+
+      body {
+        font-family: Work Sans, sans-serif;
+        font-size: 1.6rem;
+        font-weight: 400;
+        background-color: hsl(275, 100%, 97%);
+        /* background: linear-gradient(
+          (
+            to bottom,
+            url(../assets/images/background-pattern-desktop.svg) 50%,
+            hsl(275, 100%, 97%) 50%,
+            hsl(275, 100%, 97%) 50%
+          )
+        ); */
+        background-repeat: no-repeat;
+        background-size: cover;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        position: relative;
+      }
+      .back-desktop {
+        position: fixed;
+        top: 0;
+        z-index: -99;
+      }
+      .back-mobile {
+        display: none;
+        position: fixed;
+        top: 0;
+        z-index: -99;
+      }
+
+      main {
+        width: 100%;
+        margin-top: 20rem;
+        padding: 3.2rem 4.8rem;
+        border-radius: 2.4rem;
+        background-color: hsl(0, 0%, 100%);
+        overflow: hidden;
+        max-width: 60rem;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+      }
+
+      h1 {
+        color: hsl(292, 42%, 14%);
+        font-weight: 700;
+        font-size: 4.8rem;
+        transition: all 0.3s ease;
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      /* Initial hidden state */
+      .hidden {
+        height: 0;
+        opacity: 0;
+        overflow: hidden;
+        transition: all 10.5s ease;
+      }
+
+      /* Visible state */
+      .faq-paragraph {
+        height: auto;
+        opacity: 1;
+        transition: all 10.5s ease;
+      }
+
+      .question-box {
+        padding-bottom: 1.2rem;
+        padding-top: 1.2rem;
+        border-bottom: solid 1px hsl(275, 100%, 97%);
+      }
+
+      .question-box:last-child {
+        border-bottom: none;
+      }
+
+      .faq-flex {
+        display: flex;
+        gap: 2.4rem;
+        align-items: center;
+      }
+
+      h2 {
+        color: hsl(292, 42%, 14%);
+        font-weight: 600;
+      }
+
+      .h2-flex {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      button {
+        border: none;
+        background-color: hsl(0, 0%, 100%);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      p {
+        color: hsl(292, 16%, 49%);
+        line-height: 1.5;
+      }
+
+      .attribution {
+        font-size: 11px;
+        text-align: center;
+        /* display: none; */
+        position: absolute;
+        bottom: -24rem;
+        left: 50%;
+        /* right: 50%; */
+        transform: translate(-50%, -50%);
+        margin-bottom: 10rem;
+      }
+
+      .attribution a {
+        color: hsl(228, 45%, 44%);
+      }
+
+      /* ************ */
+      /* MEDIA QUERY */
+      /* ********** */
+
+      /* BELOW 700PX */
+      @media (max-width: 44em) {
+        html {
+          font-size: 50%;
+        }
+        .attribution {
+          bottom: 0;
+        }
+      }
+      /* BELOW 590PX */
+      @media (max-width: 37em) {
+        html {
+          font-size: 45%;
+        }
+        main {
+          height: 100%;
+        }
+        body {
+          align-items: stretch;
+          padding-top: 24rem;
+          min-width: 0;
+        }
+        .back-mobile {
+          display: block;
+          width: 100%;
+        }
+        .back-desktop {
+          display: none;
+        }
+      }
+      @media (max-width: 32em) {
+        html {
+          font-size: 40%;
+        }
+        body {
+          padding-top: 12rem;
+        }
+      }
+      @media (max-width: 29em) {
+        html {
+          font-size: 35%;
+        }
+      }
+      @media (max-width: 25em) {
+        html {
+          font-size: 30%;
+        }
+      }
+      @media (max-width: 21em) {
+        html {
+          font-size: 25%;
+        }
+        .open-faq img {
+          height: 4.8rem;
+        }
+      }
+      @media (max-width: 21em) {
+        html {
+          font-size: 25%;
+        }
+      }
+    </style>
+    <title>Frontend Mentor | FAQ accordion</title>
+  </head>
+  <body>
+    <img
+      class="back-desktop"
+      src="assets/images/background-pattern-desktop.svg"
+      alt=""
+    />
+    <img
+      class="back-mobile"
+      src="assets/images/background-pattern-mobile.svg"
+      alt=""
+    />
+    <main>
+      <div class="faq-flex">
+        <img src="assets/images/icon-star.svg" alt="" />
+        <h1>FAQs</h1>
+      </div>
+      <div class="question-box">
+        <div class="h2-flex">
+          <h2>What is Frontend Mentor, and how will it help me?</h2>
+          <button class="open-faq">
+            <img src="assets/images/icon-plus.svg" alt="" />
+          </button>
+          <button class="close-faq hidden">
+            <img src="assets/images/icon-minus.svg" alt="" />
+          </button>
+        </div>
+        <p class="faq-paragraph hidden">
+          Frontend Mentor offers realistic coding challenges to help developers
+          improve their frontend coding skills with projects in HTML, CSS, and
+          JavaScript. It's suitable for all levels and ideal for portfolio
+          building.
+        </p>
+      </div>
+
+      <div class="question-box">
+        <div class="h2-flex">
+          <h2>Is Frontend Mentor free?</h2>
+          <button class="open-faq">
+            <img src="assets/images/icon-plus.svg" alt="" />
+          </button>
+          <button class="close-faq hidden">
+            <img src="assets/images/icon-minus.svg" alt="" />
+          </button>
+        </div>
+        <p class="faq-paragraph hidden">
+          Yes, Frontend Mentor offers both free and premium coding challenges,
+          with the free option providing access to a range of projects suitable
+          for all skill levels.
+        </p>
+      </div>
+
+      <div class="question-box">
+        <div class="h2-flex">
+          <h2>Can I use Frontend Mentor projects in my portfolio?</h2>
+          <button class="open-faq">
+            <img src="assets/images/icon-plus.svg" alt="" />
+          </button>
+          <button class="close-faq hidden">
+            <img src="assets/images/icon-minus.svg" alt="" />
+          </button>
+        </div>
+        <p class="faq-paragraph hidden">
+          Yes, you can use projects completed on Frontend Mentor in your
+          portfolio. It's an excellent way to showcase your skills to potential
+          employers!
+        </p>
+      </div>
+
+      <div class="question-box">
+        <div class="h2-flex">
+          <h2>How can I get help if I'm stuck on a challenge?</h2>
+          <button class="open-faq">
+            <img src="assets/images/icon-plus.svg" alt="" />
+          </button>
+          <button class="close-faq hidden">
+            <img src="assets/images/icon-minus.svg" alt="" />
+          </button>
+        </div>
+        <p class="faq-paragraph hidden">
+          The best place to get help is inside Frontend Mentor's Discord
+          community. There's a help channel where you can ask questions and seek
+          support from other community members.
+        </p>
+      </div>
+    </main>
+
+    <div class="attribution">
+      Challenge by
+      <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
+        >Frontend Mentor</a
+      >. Coded by <a href="#">Kolade</a>.
+    </div>
+    <script>
+      "use strict";
+      const btnOpenFaq = document.querySelectorAll(".open-faq");
+      const btnCloseFaq = document.querySelectorAll(".close-faq");
+      const faqPara = document.querySelectorAll(".faq-paragraph");
+
+      const openFaq = function (i) {
+        faqPara[i].classList.remove("hidden");
+        btnOpenFaq[i].classList.add("hidden");
+        btnCloseFaq[i].classList.remove("hidden");
+      };
+      const closeFaq = function (i) {
+        faqPara[i].classList.add("hidden");
+        btnOpenFaq[i].classList.remove("hidden");
+        btnCloseFaq[i].classList.add("hidden");
+      };
+      for (let i = 0; i < btnOpenFaq.length; i++) {
+        btnOpenFaq[i].addEventListener("click", function () {
+          openFaq(i);
+        });
+      }
+      for (let i = 0; i < btnCloseFaq.length; i++) {
+        btnCloseFaq[i].addEventListener("click", function () {
+          closeFaq(i);
+        });
+      }
+    </script>
+  </body>
+</html>
