@@ -27,14 +27,6 @@
         font-size: 1.6rem;
         font-weight: 400;
         background-color: hsl(275, 100%, 97%);
-        /* background: linear-gradient(
-          (
-            to bottom,
-            url(../assets/images/background-pattern-desktop.svg) 50%,
-            hsl(275, 100%, 97%) 50%,
-            hsl(275, 100%, 97%) 50%
-          )
-        ); */
         background-repeat: no-repeat;
         background-size: cover;
         display: flex;
@@ -77,22 +69,15 @@
       }
 
       .hidden {
-        display: none;
-      }
-
-      /* Initial hidden state */
-      .hidden {
         height: 0;
         opacity: 0;
         overflow: hidden;
-        transition: all 10.5s ease;
       }
 
-      /* Visible state */
       .faq-paragraph {
         height: auto;
         opacity: 1;
-        transition: all 10.5s ease;
+        transition: height 0.3s ease, opacity 0.3s ease;
       }
 
       .question-box {
@@ -139,11 +124,9 @@
       .attribution {
         font-size: 11px;
         text-align: center;
-        /* display: none; */
         position: absolute;
         bottom: -24rem;
         left: 50%;
-        /* right: 50%; */
         transform: translate(-50%, -50%);
         margin-bottom: 10rem;
       }
@@ -328,11 +311,14 @@
 
       const openFaq = function (i) {
         faqPara[i].classList.remove("hidden");
+        faqPara[i].style.height = faqPara[i].scrollHeight + "px";
+        faqPara[i].style.opacity = 1;
         btnOpenFaq[i].classList.add("hidden");
         btnCloseFaq[i].classList.remove("hidden");
       };
       const closeFaq = function (i) {
-        faqPara[i].classList.add("hidden");
+        faqPara[i].style.height = 0;
+        faqPara[i].style.opacity = 0;
         btnOpenFaq[i].classList.remove("hidden");
         btnCloseFaq[i].classList.add("hidden");
       };
