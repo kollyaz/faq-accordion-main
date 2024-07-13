@@ -75,8 +75,8 @@
       }
 
       .faq-paragraph {
-        height: auto;
-        opacity: 1;
+        height: 0;
+        opacity: 0;
         transition: height 0.3s ease, opacity 0.3s ease;
       }
 
@@ -319,6 +319,9 @@
       const closeFaq = function (i) {
         faqPara[i].style.height = 0;
         faqPara[i].style.opacity = 0;
+        faqPara[i].addEventListener('transitionend', () => {
+          faqPara[i].classList.add('hidden');
+        }, { once: true });
         btnOpenFaq[i].classList.remove("hidden");
         btnCloseFaq[i].classList.add("hidden");
       };
